@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>We'll be back soon — Working in progress</title>
+  <meta name="description" content="Maintenance / coming soon page: We're working on it." />
+  <style>
+    :root{
+      --bg-1: #0f172a; /* deep navy */
+      --bg-2: #0b1220; /* slightly lighter */
+      --card: rgba(255,255,255,0.04);
+      --accent: #6ee7b7; /* mint */
+      --muted: rgba(255,255,255,0.7);
+      --glass-blur: 8px;
+      --radius: 16px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1000px 600px at 10% 20%, rgba(110,231,183,0.06), transparent),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:980px;
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    /* card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.06);
+      padding:36px;
+      border-radius: var(--radius);
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:32px;
+      letter-spacing:-0.02em;
+    }
+    p.lead{margin:0 0 18px 0;color:var(--muted)}
+
+    /* spinner */
+    .badge{
+      width:128px;height:128px;border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(110,231,183,0.12), rgba(110,231,183,0.02));
+      border:1px solid rgba(110,231,183,0.07);
+      position:relative;
+      margin-bottom:18px;
+    }
+    .spinner{
+      width:62px;height:62px;border-radius:50%;position:relative;display:grid;place-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      box-shadow: inset 0 -6px 18px rgba(2,6,23,0.6);
+    }
+    .spinner::before{
+      content:'';width:44px;height:44px;border-radius:50%;
+      border:6px solid rgba(255,255,255,0.06);
+      border-top-color:var(--accent);
+      animation: spin 1.2s linear infinite;
+      box-sizing:border-box;
+      display:block;
+    }
+
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .progress{
+      height:10px;border-radius:999px;background:rgba(255,255,255,0.04);overflow:hidden;margin-top:14px;
+    }
+    .progress > i{
+      display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent), #60a5fa);
+      border-radius:999px;animation: loading 6s linear infinite;
+    }
+    @keyframes loading{0%{width:6%}50%{width:72%}100%{width:6%}}
+
+    .meta{font-size:14px;color:var(--muted);margin-top:12px}
+
+    /* right column */
+    .info{
+      padding:36px;border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .info h2{margin:0 0 10px 0;font-size:20px}
+    .info p{margin:0 0 18px 0;color:var(--muted)}
+
+    .list{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:10px 14px;border-radius:999px;font-size:13px;border:1px solid rgba(255,255,255,0.03)}
+
+    footer{margin-top:18px;font-size:13px;color:rgba(255,255,255,0.6)}
+
+    /* responsive */
+    @media (max-width:880px){
+      .wrap{grid-template-columns:1fr;}
+      .badge{margin:0 auto 18px}
+      .info{order:2}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-labelledby="title">
+      <div style="display:flex;gap:18px;align-items:center;">
+        <div>
+          <div class="badge" aria-hidden="true">
+            <div class="spinner" role="img" aria-label="loading"></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0">
+          <h1 id="title">We'll be back soon</h1>
+          <p class="lead">We're doing some maintenance and improving our site — thanks for your patience. We'll be ready shortly.</p>
+
+          <div class="progress" aria-hidden="true"><i></i></div>
+          <div class="meta">Need help? Contact <a href="mailto:rishupatel199@gmail.com" style="color:var(--accent);text-decoration:none">rishupatel199@gmail.com</a></div>
+        </div>
+      </div>
+
+      <footer>
+        <small>&copy; <span id="year"></span> campus connect — All rights reserved.</small>
+      </footer>
+    </section>
+
+    <aside class="card info" aria-labelledby="what">
+      <h2 id="what">Working on something awesome</h2>
+      <p>We're performing updates to make your experience better. Expect improved performance, fresh content, and a smoother interface.</p>
+
+      <div class="list" role="list">
+        <div class="chip">Performance improvements</div>
+        <div class="chip">UI refresh</div>
+        <div class="chip">Faster load times</div>
+        <div class="chip">Security updates</div>
+      </div>
+
+      <p style="margin-top:18px;color:var(--muted);font-size:13px">Follow us for updates: <a href="http://www.linkedin.com/in/rishu-patelofficial" style="color:var(--accent);text-decoration:none">LinkedIn</a></p>
+    </aside>
+  </main>
+
+  <script>
+    // small niceties: current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
